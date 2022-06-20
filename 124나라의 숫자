@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Solution {
+    public String solution(int n) {
+        String answer = "";
+        String[] numArray = {"4", "1", "2", "4"};
+        
+        //List<Integer> myNumList = new ArrayList<>();
+        
+        while(n > 0){
+            int mod = n % 3;
+            
+            if(mod == 0){
+                answer = numArray[mod] + answer;
+                //myNumList.add(3);
+                n = n/3 - 1;
+            }
+            else{
+                answer = numArray[mod] + answer;
+                //myNumList.add(n%3);
+                n = n/3;
+            }
+            
+        }
+        
+        //Collections.reverse(myNumList);
+//        StringBuffer sb = new StringBuffer(answer);
+//        answer = sb.reverse().toString();
+        
+        return answer;
+    }
+}
