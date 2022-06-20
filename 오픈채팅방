@@ -1,0 +1,41 @@
+import java.util.*;
+class Solution {
+    public String[] solution(String[] record) {
+        //String[] answer = new String[record.length];
+        Map<String, String> userUid = new HashMap<>();
+        
+        //파싱
+        int resultLength = 0;
+        //String[] userRecord = record.split(",");
+        for(int i = 0; i < record.length; i++){
+            String[] userRecord = record[i].split(" ");
+            if(userRecord.length > 2){
+                String uid = userRecord[1];
+                String nicName = userRecord[2];
+                userUid.put(uid, nicName);        
+            }
+            if(userRecord[0].equals("Enter")||userRecord[0].equals("Leave")){
+                resultLength++;
+            }
+        }
+        
+        String[] answer = new String[resultLength];
+        int idx = 0;
+        for(int i = 0; i < record.length; i++){
+            String[] userRecord = record[i].split(" ");
+            if(userRecord[0].equals("Enter")){
+                String result = userUid.get(userRecord[1]) + "님이 들어왔습니다.";
+                answer[idx] = result;
+                idx++;
+            }
+            else if(userRecord[0].equals("Leave")){
+                String result = userUid.get(userRecord[1]) + "님이 나갔습니다.";
+                answer[idx] = result;
+                idx++;
+            }
+        }
+
+        
+        return answer;
+    }
+}
