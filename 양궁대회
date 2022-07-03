@@ -1,0 +1,90 @@
+class Solution {
+    public int tSum = 0;
+    public int[] result = new int[11];
+    public int flag = 0;
+    
+    public int[] solution(int n, int[] info) {
+        int[] answer = {-1};
+        int[] linfo = new int[11];
+        
+        goLion(0, 0, 0, n, info, linfo);
+        
+        if(flag == 0){
+            return answer;
+        }
+        else{
+            return result;
+        }
+    }
+    
+    public void goLion(int i, int aSum, int lSum, int n, int[] info, int[] linfo){
+        //종료조건
+        if(i >= 11){
+            if(lSum > aSum){
+                if(tSum < lSum - aSum){
+                    flag = 1;
+                    tSum = lSum - aSum;
+                    if(n > 0){
+                        linfo[i-1] += n;
+                    }
+
+                    for(int j = 0; j < 11; j++){
+                        result[j] = linfo[j];
+                    }
+                    
+                    if(n > 0){
+                        linfo[i-1] -= n;
+                    }
+                    
+                }
+                else if(tSum == lSum - aSum){
+                    flag = 1;
+                    tSum = lSum - aSum;
+                    if(checking(linfo)){
+                        for(int j = 0; j < 11; j++){
+                            result[j] = linfo[j];
+                        }
+                    }
+                    if(n > 0){
+                        linfo[i-1] -= n;
+                    }
+                }
+            }
+            return;
+        }
+        
+            
+        
+        //먹는다
+        if(n > info[i]){
+            linfo[i] += (info[i] + 1);
+            goLion(i+1, aSum, lSum + 10 -i, n - (info[i] + 1), info, linfo);
+            //먹은거 원복
+            linfo[i] -= (info[i] + 1);
+        }
+        
+        //점수를 포기한다
+        if(info[i] > 0){
+            goLion(i+1, aSum+10-i, lSum, n, info, linfo);
+        }
+        else{
+            goLion(i+1, aSum, lSum, n, info, linfo);
+        }
+
+    }
+    
+    public boolean checking(int[] info){
+        for(int i = 10; i >= 0; i--){
+            if(result[i] < info[i]){
+                return true;
+            }
+            else if(result[i] == info[i]){
+                continue;
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
+    }
+}
