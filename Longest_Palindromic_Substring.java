@@ -4,8 +4,8 @@ class Solution {
     
     public String longestPalindrome(String s) {
         Queue<Object> myq = new LinkedList<>();
-        List<Integer> longest = null;
-        int longestSize = 0;
+        // List<Integer> longest = null;
+        // int longestSize = 0;
         String pelin = "";
         
         //초기값 셋팅
@@ -31,10 +31,10 @@ class Solution {
         while(myq.size() > 0){
             result = (List)myq.poll();
 
-            if(result.get(1) - result.get(0) > longestSize){
-                longestSize = result.get(1) - result.get(0);
-                longest = result;
-            }
+            // if(result.get(1) - result.get(0) > longestSize){
+            //     longestSize = result.get(1) - result.get(0);
+            //     longest = result;
+            // }
             if(result.get(0) - 1 >= 0 && result.get(1) + 1 < s.length()){
                 if(s.charAt(result.get(1) + 1) == s.charAt(result.get(0) - 1)) {
                     List<Integer> temp = new ArrayList<>();
@@ -44,7 +44,7 @@ class Solution {
                 }
             }    
         }
-        
+
         for(int i = result.get(0); i <= result.get(1); i++){
             pelin += s.charAt(i);
         }
