@@ -1,0 +1,36 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String msg) {
+        List<Integer> answerList = new ArrayList<>();
+        
+        Map<String, Integer> zipMap = new HashMap<>();
+        init(zipMap);
+        
+        // String w = "";
+        // String prew = "";
+        // boolean flag = false;
+        // int temp = 0;
+        for(int i = 0; i < msg.length(); i++){
+            String w = "" + msg.charAt(i);
+            // w 찾기 
+			       
+        }
+        
+        
+        
+        
+        int[] answer = new int[answerList.size()];
+        for(int k = 0; k < answerList.size(); k++){
+            answer[k] = answerList.get(k);
+        }
+        
+        return answer;
+    }
+    
+    public void init(Map<String, Integer> zipMap){
+        for(int i = 0; i < 26; i++){
+            zipMap.put(Character.toString('A' + i), i+1);
+        }
+    }
+}
